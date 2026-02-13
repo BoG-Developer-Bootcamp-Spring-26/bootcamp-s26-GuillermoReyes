@@ -66,7 +66,7 @@ function getTrainComingIn1Minute(arrivals) {
   const result = [];
 
   arrivals.forEach(train => {
-    if (train.WAITING_TIME == "1 min"){
+    if (train.WAITING_TIME === "1 min"){
       result.push(train);
     }
   })
@@ -102,7 +102,14 @@ function getTrainComingIn1Minute(arrivals) {
  *
  */
 function updateLineColor(arrivals) {
-  // TODO
+  const blueTrains = arrivals.filter(train => train.line === "BLUE");
+  const deepCopy = blueTrains.map(train => structuredClone(train));
+
+  const updated = deepCopy.map(train =>{
+    train.LINE = "PINK";
+    return train;
+  })
+  return updated;
 }
 
 /*
